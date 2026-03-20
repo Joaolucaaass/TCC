@@ -1,0 +1,382 @@
+@font-face {
+  font-family: 'Nexa';
+  src: url('../src/assets/Nexa-ExtraLight.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Nexa';
+  src: url('../src/assets/Nexa-Heavy.ttf') format('truetype');
+  font-weight: 700;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --azul-fundo:    #050d1f;
+  --azul-escuro:   #080f20;
+  --azul-medio:    #0e2654;
+  --azul-destaque: #1a5dc8;
+  --azul-vivo:     #2d7fff;
+  --azul-claro:    #4d9fff;
+  --vermelho:      #e8273a;
+  --branco:        #ffffff;
+  --branco-suave:  rgba(255,255,255,0.55);
+  --vidro:         rgba(255,255,255,0.05);
+  --vidro-borda:   rgba(255,255,255,0.1);
+  --input-bg:      rgba(255,255,255,0.04);
+  --input-borda:   rgba(255,255,255,0.1);
+}
+
+html, body {
+  height: 100%;
+  background: var(--azul-fundo);
+  color: var(--branco);
+  font-family: 'Nexa';
+  overflow-x: hidden;
+}
+
+/* ── LAYOUT PRINCIPAL ── */
+.pagina {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── PAINEL LATERAL (esquerdo) ── */
+.painel-lateral {
+  display: none;
+  width: 45%;
+  background: linear-gradient(145deg, #080f20 0%, #0e2654 50%, #071428 100%);
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--vidro-borda);
+}
+
+.painel-conteudo {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+}
+
+.painel-logo {
+  font-family: 'Nexa', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 5px;
+  color: var(--branco);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.painel-texto {
+  margin-bottom: 48px;
+}
+
+.painel-titulo {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--branco);
+  margin-bottom: 16px;
+}
+
+.painel-subtitulo {
+  font-size: 15px;
+  color: var(--branco-suave);
+  line-height: 1.7;
+  max-width: 320px;
+}
+
+/* Círculos decorativos */
+.painel-decoracao {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.circulo {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(45,127,255,0.15);
+}
+
+.circulo--1 {
+  width: 400px; height: 400px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(45,127,255,0.06) 0%, transparent 70%);
+}
+
+.circulo--2 {
+  width: 250px; height: 250px;
+  top: 10%; right: 10%;
+  background: radial-gradient(circle, rgba(45,127,255,0.04) 0%, transparent 70%);
+  border-color: rgba(45,127,255,0.08);
+}
+
+.circulo--3 {
+  width: 150px; height: 150px;
+  top: 40%; left: 10%;
+  border-color: rgba(45,127,255,0.06);
+}
+
+/* ── PAINEL FORMULÁRIO (direito) ── */
+.painel-formulario {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background: var(--azul-escuro);
+  position: relative;
+  overflow: hidden;
+}
+
+.painel-formulario::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 80% 20%, rgba(45,127,255,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(45,127,255,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.formulario-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  animation: surgir 0.5s ease both;
+}
+
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ABAS ── */
+.abas {
+  display: flex;
+  background: var(--vidro);
+  border: 1px solid var(--vidro-borda);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 36px;
+}
+
+.aba {
+  flex: 1;
+  background: none;
+  border: none;
+  border-radius: 9px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Nexa', sans-serif;
+  color: var(--branco-suave);
+  cursor: pointer;
+  transition: all 0.25s;
+  letter-spacing: 0.5px;
+}
+
+.aba--ativa {
+  background: var(--azul-destaque);
+  color: var(--branco);
+}
+
+/* ── TOPO DO FORMULÁRIO ── */
+.formulario-topo {
+  margin-bottom: 28px;
+}
+
+.formulario-titulo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--branco);
+  margin-bottom: 6px;
+}
+
+.formulario-subtitulo {
+  font-size: 13px;
+  color: var(--branco-suave);
+  line-height: 1.5;
+}
+
+/* ── CAMPOS ── */
+.campos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: relative;
+}
+
+.campo-rotulo {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--branco-suave);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.campo-input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-borda);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  color: var(--branco);
+  font-family: 'Nexa', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.campo-input::placeholder {
+  color: rgba(255,255,255,0.25);
+}
+
+.campo-input:focus {
+  border-color: var(--azul-vivo);
+  background: rgba(45,127,255,0.05);
+}
+
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha .campo-input {
+  padding-right: 48px;
+}
+
+.campo-olho {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--branco-suave);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s;
+}
+.campo-olho:hover { color: var(--branco); }
+.campo-olho svg { width: 18px; height: 18px; }
+
+.campo-link {
+  font-size: 12px;
+  color: var(--azul-claro);
+  text-decoration: none;
+  text-align: right;
+  margin-top: 2px;
+  transition: color 0.2s;
+}
+.campo-link:hover { color: var(--branco); }
+
+/* ── MENSAGEM DE ERRO ── */
+.mensagem-erro {
+  font-size: 12px;
+  color: var(--vermelho);
+  min-height: 18px;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* ── BOTÃO ENVIAR ── */
+.botao-enviar {
+  width: 100%;
+  background: var(--azul-destaque);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Nexa', sans-serif;
+  color: var(--branco);
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+  margin-bottom: 20px;
+}
+.botao-enviar:hover  { background: var(--azul-vivo); }
+.botao-enviar:active { transform: scale(0.98); }
+
+/* ── RODAPÉ DO FORMULÁRIO ── */
+.formulario-rodape {
+  font-size: 13px;
+  color: var(--branco-suave);
+  text-align: center;
+}
+
+.formulario-rodape a {
+  color: var(--azul-claro);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.formulario-rodape a:hover { color: var(--branco); }
+
+/*  OCULTAR BLOCO  */
+.oculto { display: none; }
+
+
+/* TABLET (768px+) */
+@media (min-width: 768px) {
+  .painel-lateral {
+    display: flex;
+  }
+
+  .painel-formulario {
+    padding: 60px 48px;
+  }
+}
+
+
+/* DESKTOP (1200px+) */
+@media (min-width: 1200px) {
+  .painel-lateral {
+    width: 50%;
+  }
+
+  .painel-conteudo {
+    padding: 64px;
+  }
+
+  .painel-logo    { font-size: 30px; }
+  .painel-titulo  { font-size: 44px; }
+  .painel-subtitulo { font-size: 16px; }
+
+  .formulario-container { max-width: 440px; }
+  .formulario-titulo    { font-size: 28px; }
+}
+.botao-sair {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--vidro-borda);
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Nexa', sans-serif;
+  color: var(--branco-suave);
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
